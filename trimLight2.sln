@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.8.34330.188
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "trimLight2", "trimLight2\trimLight2.csproj", "{FAD4F54A-871C-4226-BC23-02F581B01769}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TrimlightData", "TrimlightData\TrimlightData.csproj", "{FAAB36C8-7601-498A-89A5-DF2F353B4A0C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TrimlightTest", "TrimlightTest\TrimlightTest.csproj", "{F31A655D-6798-407B-86F3-294B2CB2E0E9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,10 +13,14 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{FAD4F54A-871C-4226-BC23-02F581B01769}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{FAD4F54A-871C-4226-BC23-02F581B01769}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{FAD4F54A-871C-4226-BC23-02F581B01769}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{FAD4F54A-871C-4226-BC23-02F581B01769}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FAAB36C8-7601-498A-89A5-DF2F353B4A0C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FAAB36C8-7601-498A-89A5-DF2F353B4A0C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FAAB36C8-7601-498A-89A5-DF2F353B4A0C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FAAB36C8-7601-498A-89A5-DF2F353B4A0C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F31A655D-6798-407B-86F3-294B2CB2E0E9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F31A655D-6798-407B-86F3-294B2CB2E0E9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F31A655D-6798-407B-86F3-294B2CB2E0E9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F31A655D-6798-407B-86F3-294B2CB2E0E9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
