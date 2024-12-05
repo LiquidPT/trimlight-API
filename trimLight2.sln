@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TrimlightData", "TrimlightD
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TrimlightTest", "TrimlightTest\TrimlightTest.csproj", "{F31A655D-6798-407B-86F3-294B2CB2E0E9}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TrimlightData.UnitTest", "TrimlightDataTest\TrimlightData.UnitTest.csproj", "{BCFE89DE-EFD6-4A50-87FE-82D4FAA801DC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{F31A655D-6798-407B-86F3-294B2CB2E0E9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F31A655D-6798-407B-86F3-294B2CB2E0E9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F31A655D-6798-407B-86F3-294B2CB2E0E9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BCFE89DE-EFD6-4A50-87FE-82D4FAA801DC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BCFE89DE-EFD6-4A50-87FE-82D4FAA801DC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BCFE89DE-EFD6-4A50-87FE-82D4FAA801DC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BCFE89DE-EFD6-4A50-87FE-82D4FAA801DC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

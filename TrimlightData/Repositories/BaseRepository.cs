@@ -16,24 +16,9 @@ public abstract class BaseRepository
 
     protected async Task<T> GetTrimlightDataAsync<T>(string url)
     {
+        var request = CreateRequest(HttpMethod.Get, url);
+
         var client = sharedClient;
-        var request = new HttpRequestMessage(HttpMethod.Get, url);
-
-        Dictionary<string, string> headers = BuildHeaders();
-        foreach (var header in headers)
-        {
-            if (string.Equals(header.Key, "authorization", StringComparison.OrdinalIgnoreCase))
-            {
-                request.Headers.Authorization = new AuthenticationHeaderValue(header.Value);
-            }
-            else
-            {
-                request.Headers.Add(header.Key, header.Value);
-            }
-
-            request.Headers.Add(header.Key, header.Value);
-        }
-
         var httpResponse = await client.SendAsync(request);
         httpResponse.EnsureSuccessStatusCode();
 
@@ -48,27 +33,16 @@ public abstract class BaseRepository
 
     protected async Task<T> PostTrimlightDataAsync<T>(string url, object requestPayload)
     {
-        var content = JsonContent.Create(requestPayload);
+        var request = CreateRequest(HttpMethod.Post, url, requestPayload);
 
         var client = sharedClient;
-        var request = new HttpRequestMessage(HttpMethod.Post, url)
-        {
-            Content = content
-        };
-
-        Dictionary<string, string> headers = BuildHeaders();
-        foreach (var header in headers)
-        {
-            request.Headers.Add(header.Key, header.Value);
-        }
-
         var httpResponse = await client.SendAsync(request);
         httpResponse.EnsureSuccessStatusCode();
 
-        var response = await httpResponse.Content.ReadFromJsonAsync<PagedResponse<T>>();
-        if (response?.Code == ResultCode.Success && response.Payload != null && response.Payload.Data != null)
+        var response = await httpResponse.Content.ReadFromJsonAsync<Response<T>>();
+        if (response?.Code == ResultCode.Success && response.Payload != null)
         {
-            return response.Payload.Data;
+            return response.Payload;
         }
 
         throw new InvalidDataException(string.Format("Error calling Trimlight service {0}. Error {1]: {2}", httpResponse.RequestMessage.RequestUri, response.Code, response.Desc));
@@ -76,20 +50,9 @@ public abstract class BaseRepository
 
     protected async Task PostTrimlightDataAsync(string url, object requestPayload)
     {
-        var content = JsonContent.Create(requestPayload);
+        var request = CreateRequest(HttpMethod.Post, url, requestPayload);
 
         var client = sharedClient;
-        var request = new HttpRequestMessage(HttpMethod.Post, url)
-        {
-            Content = content
-        };
-
-        Dictionary<string, string> headers = BuildHeaders();
-        foreach (var header in headers)
-        {
-            request.Headers.Add(header.Key, header.Value);
-        }
-
         var httpResponse = await client.SendAsync(request);
         httpResponse.EnsureSuccessStatusCode();
 
@@ -123,5 +86,27 @@ public abstract class BaseRepository
         headers.Add("S-ClientId", this.ClientId);
         headers.Add("S-Timestamp", Convert.ToInt64(elapsedTime.TotalMilliseconds).ToString());
         return headers;
+    }
+
+    private HttpRequestMessage CreateRequest(HttpMethod httpMethod, string url, object? requestPayload = null)
+    {
+        var content = requestPayload != null ? JsonContent.Create(requestPayload) : null;
+        var request = new HttpRequestMessage(httpMethod, url)
+        {
+            Content = content
+        };
+        Dictionary<string, string> headers = BuildHeaders();
+        foreach (var header in headers)
+        {
+            if (string.Equals(header.Key, "authorization", StringComparison.OrdinalIgnoreCase))
+            {
+                request.Headers.TryAddWithoutValidation(header.Key, header.Value);
+            }
+            else
+            {
+                request.Headers.Add(header.Key, header.Value);
+            }
+        }
+        return request;
     }
 }

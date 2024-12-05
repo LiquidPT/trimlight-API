@@ -3,7 +3,7 @@ using System.Text;
 using TrimlightData.Models;
 
 namespace TrimlightData;
-internal static class ExtensionMethods
+public static class ExtensionMethods
 {
     public static TrimlightDateTime ToTrimlightDateTime(this DateTime dt)
     {
@@ -19,12 +19,13 @@ internal static class ExtensionMethods
         };
     }
 
-    public static string HMACSHA256Hash(this string accessString, string key)
+    public static string HMACSHA256Hash(this string message, string key)
     {
-        var keyBytes = Encoding.UTF8.GetBytes(key);
-        var accessBytes = Encoding.UTF8.GetBytes(accessString);
-        var encryptedBytes = new HMACSHA256(keyBytes).ComputeHash(accessBytes);
+        var encoding = Encoding.UTF8;
+        var keyBytes = encoding.GetBytes(key);
+        var messageBytes = encoding.GetBytes(message);
+        var encryptedBytes = new HMACSHA256(keyBytes).ComputeHash(messageBytes);
 
-        return Convert.ToBase64String(accessBytes);
+        return Convert.ToBase64String(encryptedBytes);
     }
 }
